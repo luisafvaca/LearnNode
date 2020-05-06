@@ -1,7 +1,4 @@
-var chalk = require('chalk');
+var fs = require('fs');
+var resultado = fs.readFileSync('luisa.txt');
 
-var red = chalk.bold.red;
-var green = chalk.bgBlack.cyan;
-
-console.log(red('Something went wrong'));
-console.log(green('Yey! you doing good'));
+console.log(resultado.toString());
