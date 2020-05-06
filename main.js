@@ -1,2 +1,3 @@
 var module = require('./mymodule');
-console.log(module);
+
+module.underlined('Hola mundo', '🔮');
