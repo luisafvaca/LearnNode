@@ -1,27 +1,15 @@
 //Carga de protocolo
 var http = require('http');
+var url = require('url');
 var fs = require('fs');
 
 //Creacion de Servidor
 var server = http.createServer((req, res)=>{
     console.log(req.url, 'test');
-    if(req.url === '/'){
-        //lectura del archivo de tipo texto
-        fs.readFile('./public/index.html', (err, data) => {
-            res.writeHead(200, {'contentType': 'text/html'});
-            res.end(data);
-        }) 
-    } else if (req.url === '/images/google-logo.png') {
-        //lectura del archivo de tipo imagen
-        fs.readFile('./public/images/google-logo.png', (err, data) => {
-            res.writeHead(200, {'contentType': 'image/png'});
-            res.end(data);
-        }) 
-    } else {
-        //error cuando la url ingresada no existe
-        res.writeHead(404, {'contentType': 'text/html'});
-        res.end('Url no encontrada');
-    }
+    var query = url.parse(req.url, true).query;
+    
+    res.writeHead(200, {'contentType': 'text/html'});
+    res.end(`Hola ${query.nombre}`);
    
 });
 
